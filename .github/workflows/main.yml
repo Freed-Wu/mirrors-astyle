@@ -1,19 +1,19 @@
 ---
 "on":
   schedule:
-    - cron: "55 8 * * *"
+    - cron: 0 19 * * 5
   workflow_dispatch:
+
+# https://github.com/softprops/action-gh-release/issues/236
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-      - run: pip install pre-commit-mirror-maker
-      - run: git config --global user.name 'Github Actions'
-      - run: git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-      - run: pre-commit-mirror . --language=python --package-name=astyle --id=astyle --entry='astyle --options=none' --types-or c++ --types-or c --types-or 'c#' --types-or 'cuda' --types-or 'java' --types-or 'objective-c'
-      - run: |
-          git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY
-          git push origin HEAD:refs/heads/main --tags
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - name: Update version
+        run: |
+          scripts/git-commit.sh
