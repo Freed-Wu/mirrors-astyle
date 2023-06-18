@@ -1,0 +1,10 @@
+-   id: astyle
+    name: astyle
+    description: ''
+    entry: astyle --options=none
+    language: python
+    'types_or': [c++, c, c#, cuda, java, objective-c]
+    args: []
+    require_serial: false
+    additional_dependencies: []
+    minimum_pre_commit_version: '2.9.2'
