@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from setuptools import setup
 
+
 setup(
-    name="pre_commit_placeholder_package",
-    version="0.0.0",
-    install_requires=["astyle==3.3.1"],
+    name='pre_commit_placeholder_package',
+    version='0.0.0',
+    install_requires=['astyle==3.3b3'],
 )
